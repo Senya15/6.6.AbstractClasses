@@ -8,15 +8,17 @@ public abstract class Client {
         this.availableMoney = availableMoney;
     }
 
-    public int checkMoney() {
+    public int checkAvailableMoney() {
         return availableMoney;
     }
 
-    public int checkAccount() {
+    public int checkAccountAmount() {
         return accountAmount;
     }
 
-    public abstract boolean getAccountAmount(int money);
+    public abstract void checkAccount();
+
+    public abstract boolean getAccountMoney(int money);
 
     public abstract boolean setAccountAmount(int money);
 }
