@@ -4,8 +4,8 @@ import lombok.Getter;
 
 @Getter
 public class IndividualEntrepreneur extends Client {
-    private static final float PERCENT1 = 1f;
-    private static final float PERCENT2 = 0.5f;
+    private final float PERCENT1 = 1f;
+    private final float PERCENT2 = 0.5f;
     private int commission;
 
     public IndividualEntrepreneur(int availableMoney) {
@@ -16,7 +16,7 @@ public class IndividualEntrepreneur extends Client {
     public String getInfoAccount() {
         return String.format("\tКомисия за снятие: отсутствует%n" +
                 "\tКомиссия за пополнение: если сумма < 1000 рублей - %.1f %c, если сумма >= 1000 рублей - %.1f %c%n" +
-                "\tБаланс счёта: %d рублей%n", PERCENT1, '%', PERCENT2, '%', getAccountBalance());
+                "\tБаланс счёта: %d рублей%n", getPERCENT1(), '%', getPERCENT2(), '%', getAccountBalance());
     }
 
     @Override
