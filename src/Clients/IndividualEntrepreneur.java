@@ -13,8 +13,10 @@ public class IndividualEntrepreneur extends Client {
     }
 
     @Override
-    public void checkAccount() {
-
+    public String getInfoAccount() {
+        return String.format("\tКомисия за снятие: отсутствует%n" +
+                "\tКомиссия за пополнение: если сумма < 1000 рублей - %.1f %c, если сумма >= 1000 рублей - %.1f %c%n" +
+                "\tБаланс счёта: %d рублей%n", PERCENT1, '%', PERCENT2, '%', getAccountBalance());
     }
 
     @Override
@@ -28,23 +30,20 @@ public class IndividualEntrepreneur extends Client {
 
     @Override
     public boolean setAccountAmount(int money) {
-        money = setCommission(money);
+        setCommission(money);
         if (money <= availableMoney) {
-            availableMoney -= money;
+            availableMoney -= (money + getCommission());
             accountAmount += money;
             return true;
         } else return false;
     }
 
-    private int setCommission(int money) {
+    private void setCommission(int money) {
         if (money < 1000) {
-            commission = (int) (money / 100 * PERCENT1);
-            money += commission;
+            commission =  (int) Math.ceil((double) money / 100 * PERCENT1);
         } else {
-            commission = (int) (money / 100 * PERCENT2);
-            money += commission;
+            commission = (int) Math.ceil((double) money / 100 * PERCENT2);
         }
-        return money;
     }
 
 //    public int getPercent(){

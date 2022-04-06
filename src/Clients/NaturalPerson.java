@@ -7,10 +7,10 @@ public class NaturalPerson extends Client {
     }
 
     @Override
-    public void checkAccount() {
-        System.out.printf("\tКомисия за снятие - отсутствует%n" +
-                "\tКомиссия за пополнение - отсутствует%n" +
-                "\tБаланс счёта - %d рублей%n", checkAccountAmount());
+    public String getInfoAccount() {
+        return String.format("\tКомисия за снятие: отсутствует%n" +
+                "\tКомиссия за пополнение: отсутствует%n" +
+                "\tБаланс счёта: %d рублей%n", getAccountBalance());
     }
 
     @Override

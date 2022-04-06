@@ -1,5 +1,8 @@
 package Clients;
 
+import lombok.Getter;
+
+@Getter
 public class LegalEntity extends Client {
     private static final float PERCENT = 1f;
     private int commission;
@@ -9,15 +12,17 @@ public class LegalEntity extends Client {
     }
 
     @Override
-    public void checkAccount() {
-
+    public String getInfoAccount() {
+        return String.format("\tКомисия за снятие: %.1f %c%n" +
+                "\tКомиссия за пополнение: отсутствует%n" +
+                "\tБаланс счёта: %d рублей%n", PERCENT, '%', getAccountBalance());
     }
 
     @Override
     public boolean getAccountMoney(int money) {
-        money = setCommission(money);
+        setCommission(money);
         if (money <= accountAmount) {
-            accountAmount -= money;
+            accountAmount -= (money + getCommission());
             availableMoney += money;
             return true;
         } else return false;
@@ -32,10 +37,7 @@ public class LegalEntity extends Client {
         } else return false;
     }
 
-    private int setCommission(int money) {
-        commission = (int) (money / 100 * PERCENT);
-        money += commission;
-        return money;
+    private void setCommission(int money) {
+        commission = (int) Math.ceil((double) money / 100 * PERCENT);
     }
-
 }

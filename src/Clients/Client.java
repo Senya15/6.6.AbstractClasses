@@ -1,22 +1,22 @@
 package Clients;
 
 public abstract class Client {
-    int accountAmount;
-    int availableMoney;
+    protected int accountAmount;
+    protected int availableMoney;
 
-    public Client(int availableMoney) {
+    Client(int availableMoney) {
         this.availableMoney = availableMoney;
     }
 
-    public int checkAvailableMoney() {
+    public int getInfoAvailableMoney() {
         return availableMoney;
     }
 
-    public int checkAccountAmount() {
+    protected int getAccountBalance() {
         return accountAmount;
     }
 
-    public abstract void checkAccount();
+    public abstract String getInfoAccount();
 
     public abstract boolean getAccountMoney(int money);
 
